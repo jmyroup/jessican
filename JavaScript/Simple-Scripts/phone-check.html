@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>JavaScript Template</title>
+<script language = "javascript">
+<!--
+function checkPhoneNumber(phone_number){
+if(phone_number.length == 7 || phone_number.length == 10){return true;}
+else{return false;}
+}
+
+
+function getPhoneNumber(){
+var myNumber = prompt("Please enter a seven or ten-digit phone number.","");
+myNumber = myNumber.replace(/[^0-9]/g,"");
+if(checkPhoneNumber(myNumber)){
+alert("Phone number was confirmed.");
+return myNumber;
+}
+else{alert("Phone number was not confirmed - wrong number of digits.");return false;}
+
+}
+
+getPhoneNumber();
+//-->
+</script>
+</head>
+<body>
+</body>
+</html>
