@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Fast-find Navigation</title>
+<script language="JavaScript" type="Text/JavaScript">
+<!--
+function jumpTo(newLoc) {
+newPage = newLoc.options[newLoc.selectedIndex].value;
+window.location.href = newPage;
+}
+//-->
+</script>
+</head>
+<body bgcolor="#ffffff">
+<form>
+	<select name="newlink" onChange="jumpTo(this.form.newlink)">
+	<option value="selected">Choose a link</option>
+	<option value="info.html">Information</option>
+	<option value="account.html">New Accounts</option>
+	<option value="products.html">Products</option>
+	</select>
+</body>
+</html>
