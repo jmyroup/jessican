@@ -1,0 +1,29 @@
+<!DOCTYPE html>.
+<html>
+<head>
+	<title>HTML5 Spiral</title>
+</head>
+<body>
+	<canvas id="canvasId" width="300" height="300"></canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvasId");
+		var context = canvas.getContext("2d");
+		var centerX = 150;
+		var centerY = 150;
+		context.moveTo(centerX, centerY);
+
+		var stepsPerRotation = 60;
+		var nextStep = 30*Math.PI/stepsPerRotation;       
+		var spin = nextStep;
+
+		while(spin < 45*Math.PI) {
+			var rotateX = centerX + spin * Math.sin(spin); 
+			var rotateY = centerY + spin * Math.cos(spin); 
+			context.lineTo(rotateX, rotateY);
+			spin = spin + nextStep;
+		}
+		context.stroke();
+	</script>
+
+</body>
+</html>
