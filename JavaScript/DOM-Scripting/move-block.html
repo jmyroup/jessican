@@ -1,0 +1,43 @@
+<html>
+<html>
+<head>
+	<title>Position</title>
+	<style type="text/css">
+		#divBlock {
+			position: relative;
+			height: 100px;
+			width: 100px;
+			top: 100px;
+			left: 100px;
+			background-color: red;
+		}
+	</style>
+	<script type="text/javascript">
+		function init(){
+			document.getElementById("divBlock").style.top = "100px";
+			document.getElementById("divBlock").style.left = "100px";
+		}
+	
+		function moveH(elem, distance){
+			var objElem = document.getElementById(elem);
+			var curLeft = parseInt(objElem.style.left);
+			objElem.style.left = (curLeft + distance) + "px";
+		}
+	
+		function moveG(elem, distance){
+			var objElem = document.getElementById(elem);
+			var curTop = parseInt(objElem.style.top);
+			objElem.style.top = (curTop + distance) + "px";
+		}
+	</script>
+</head>
+<body onLoad="init();">
+	<form>
+		<input type="button" value="Left" onClick="moveH('divBlock',-10);">
+		<input type="button" value="Right" onClick="moveH('divBlock',10);">
+		<input type="button" value="Up" onClick="moveG('divBlock',-10);">
+		<input type="button" value="Down" onClick="moveG('divBlock',10);">
+	</form>
+	<div id="divBlock"></div>
+</body>
+</html>
