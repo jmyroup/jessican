@@ -3,13 +3,16 @@
 <title>JavaScript Template</title>
 <script language = "javascript">
 <!--
-var student_record = new Object();
-student_record.first_name="John";
-student_record.last_name="Doe";
-student_record.student_ID=123456;
-student_record.major="Chemistry";
-student_record.minor="Web Development";
-student_record.gpa=3.5;
+function Student(first_name, last_name, student_ID, major, minor, gpa) {
+this.first_name=first_name;
+this.last_name=last_name;
+this.student_ID=student_ID;
+this.major=major;
+this.minor=minor;
+this.gpa=gpa;
+}
+
+var student_record=new Student("John", "Doe", 123456, "Chemistry", "Web Development", 3.5);
 
 for (prop in student_record) {
 document.write("Name of property: " + prop + "; Value: " + student_record[prop] + "<br>");
