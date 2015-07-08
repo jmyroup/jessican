@@ -1,0 +1,114 @@
+<html>
+<head>
+<title>Fly</title>
+<script type="text/javascript">
+Left = new Array();
+Top = new Array();
+var i;
+varTimer;
+
+function BuildArrays() {
+	Left[0] = 0; Top[0] = 0;
+	Left[1] = 1; Top[1] = 8;
+	Left[2] = 3; Top[2] = 16;
+	Left[3] = 5; Top[3] = 25;
+	Left[4] = 7; Top[4] = 32;
+	Left[5] = 10; Top[5] = 40;
+	Left[6] = 12; Top[6] = 48;
+	Left[7] = 15; Top[7] = 55;
+	Left[8] = 19; Top[8] = 62;
+	Left[9] = 22; Top[9] = 70;
+	Left[10] = 27; Top[10] = 78;
+	Left[11] = 32; Top[11] = 86;
+	Left[12] = 35; Top[12] = 92;
+	Left[13] = 39; Top[13] = 97;
+	Left[14] = 45; Top[14] = 102;
+	Left[15] = 51; Top[15] = 107;
+	Left[16] = 58; Top[16] = 111;
+	Left[17] = 65; Top[17] = 115;
+	Left[18] = 73; Top[18] = 118;
+	Left[19] = 81; Top[19] = 120;
+	Left[20] = 91; Top[20] = 120;
+	Left[21] = 99; Top[21] = 121;
+	Left[22] = 107; Top[22] = 121;
+	Left[23] = 117; Top[23] = 122;
+	Left[24] = 128; Top[24] = 122;
+	Left[25] = 138; Top[25] = 122;
+	Left[26] = 146; Top[26] = 121;
+	Left[27] = 153; Top[27] = 117;
+	Left[28] = 158; Top[28] = 112;
+	Left[29] = 164; Top[29] = 107;
+	Left[30] = 167; Top[30] = 102;
+	Left[31] = 172; Top[31] = 95;
+	Left[32] = 176; Top[32] = 90;
+	Left[33] = 181; Top[33] = 82;
+	Left[34] = 185; Top[34] = 77;
+	Left[35] = 190; Top[35] = 71;
+	Left[36] = 195; Top[36] = 65;
+	Left[37] = 199; Top[37] = 58;
+	Left[38] = 205; Top[38] = 51;
+	Left[39] = 209; Top[39] = 45;
+	Left[40] = 217; Top[40] = 39;
+	Left[41] = 223; Top[41] = 35;
+	Left[42] = 229; Top[42] = 30;
+	Left[43] = 236; Top[43] = 26;
+	Left[44] = 244; Top[44] = 23;
+	Left[45] = 251; Top[45] = 20;
+	Left[46] = 259; Top[46] = 16;
+	Left[47] = 268; Top[47] = 13;
+	Left[48] = 276; Top[48] = 9;
+	Left[49] = 284; Top[49] = 6;
+	Left[50] = 293; Top[50] = 4;
+	Left[51] = 302; Top[51] = 1;
+	Left[52] = 317; Top[52] = 2;
+	Left[53] = 317; Top[53] = 5;
+	Left[54] = 317; Top[54] = 8;
+	Left[55] = 317; Top[55] = 11;
+	Left[56] = 317; Top[56] = 14;
+}
+
+function Fly() {
+	i = 0;
+	document.getElementById("divBlock").style.left = "0px";
+	document.getElementById("divBlock").style.top = "0px";
+	Timer = setInterval("Move()", 75);
+}
+
+function Move() {
+	document.getElementById("divBlock").style.left = Left[i] + "px";
+	document.getElementById("divBlock").style.top = Top[i] + "px";
+	i++;
+	if(i == Left.length) {
+		clearInterval(Timer);
+		document.getElementById("img").src = "dove2.gif";
+		Timer = setInterval("MoveBack()", 75);
+	}
+}
+
+function MoveBack() {
+	document.getElementById("divBlock").style.left = Left[i] + "px";
+	document.getElementById("divBlock").style.top = Top[i] + "px";
+	i--;
+	if(i == Left.length) {
+		clearInterval(Timer);
+	}
+}
+</script>
+<style type="text/css">
+#divBlock {
+position:relative;
+height:70px;
+width:70px;
+top:0px;
+left:0px;
+}
+</style>
+</head>
+<body onLoad="BuildArrays();">
+<form>
+<input type="button" value="Fly!" onClick="Fly();">
+</form>
+<div id="divBlock">
+<img id="img" src="dove.gif" style="postion:relative" /></div>
+</body>
+</html>
