@@ -1,0 +1,49 @@
+<HTML>
+<STYLE>
+.toolTip { 
+	padding-right: 20px; 
+	color: #3366FF;
+	cursor: help; 
+	position: relative; 
+}
+.toolTipWrapper { 
+	width: 155px;
+	position: absolute; 
+	top: 20px;
+	left: 20px;
+	display: none; 
+	background-color:blue;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 9pt; 
+}
+</STYLE>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>  
+<script>
+	$(document).ready(function() {
+		var show = function(event) {
+			$('div.tooltipwrapper').remove();
+			$('<div class="tooltipwrapper">This is a simple tooltip made with jQuery</div>').appendTo('span');
+			$('div.tooltipwrapper').css("display", "block");
+		};
+		
+		var hide = function(event) {
+			$('span').children().remove();
+		};
+		
+		$('span').hover(
+			show, hide
+		);
+	});
+</script>
+</head>
+<BODY>
+
+<div id="wrapper">
+	<h1>Here is an example 
+		<span class="toolTip">tooltip</span>
+	</h1>
+</div>
+
+</BODY>
+</HTML>
