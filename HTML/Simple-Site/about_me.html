@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="San Gregorio Beach Adventures" />
+<meta name="keywords" content="beach adventures San Gregorio California" />
+<title>San Gregorio Beach Adventures</title>
+<link href="Week5CSS.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+function blank(a) { if(a.value == a.defaultValue) a.value = ""; }
+function unblank(a) { if(a.value == "") a.value = a.defaultValue; }
+</script> 
+</head>
+<body>
+	<div class="container">
+  		<div class="header"><img src="images/header.gif" width="816" height="198" alt="San Gregorio Beach Adventures" />
+		</div>
+  		
+        <div class="sidebar1">
+    		<ul class="nav">
+      			<li><a href="index.html"><img src="images/home.gif" width="160" height="40" alt="Home" /></a></li>
+      			<li><a href="blog.html"><img src="images/blog.gif" width="160" height="40" alt="Blog" /></a></li>
+      			<li><a href="gallery.html"><img src="images/gallery.gif" width="160" height="40" alt="Gallery" /></a></li>
+      			<li><a href="directions.html"><img src="images/directions.gif" width="160" height="40" alt="Directions" /></a></li>
+      			<li><a href="about_me.html"><img src="images/about_me.gif" width="160" height="40" alt="About Me" /></a></li>
+    		</ul>
+   		</div>
+  		
+        <div class="content">
+    		<h1>About Me</h1>
+				<p>I'm Jessica, and I moved here from Michigan about 3 years ago. I'm loving California and don't intend to move back, especially since disovering the beautiful beaches like this one.</p>
+        		<p>Let me know what you think of my adventures using the contact form below!</p><hr />
+                <form name="contactform" method="post" action="contact-form.php">
+                <p><input type="text" name="name" value="Your name" onfocus="blank(this)" onblur="unblank(this)"/></p>
+                <p><input type="text" name="email" value="Your email address" onfocus="blank(this)" onblur="unblank(this)"/></p>
+                <p>What do you think of the beach?<br />
+                   <input type="radio" name="opinion" value="I love it!" />I love it!<br />
+                   <input type="radio" name="opinion" value="I hate it!" />I hate it!</p>
+                <p><textarea name="message" cols="20" rows="5"></textarea></p>
+                <p>Would you like to receive an email when I post new content?<br />
+				   <select name="notify">
+                   <option value="yes">Sure!</option>
+                   <option value="no" selected="selected">No, thank you.</option>
+                   </select></p>
+                <p><input type="submit" value="Submit" />&nbsp;&nbsp;&nbsp;
+                   <input type="reset" value="Clear" /></p>
+                </form>
+		</div>
+  		
+        <div class="footer">
+    		<p>Copyright 2014</p>
+		</div>
+	</div>
+</body>
+</html>
