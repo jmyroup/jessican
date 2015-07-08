@@ -1,50 +1,72 @@
 
-<HTML>
-<STYLE>
-.toolTip { 
-	padding-right: 20px; 
-	color: #3366FF;
-	cursor: help; 
-	position: relative; 
-}
-.toolTipWrapper { 
-	width: 155px;
-	position: absolute; 
-	top: 20px;
-	left: 20px;
-	display: none; 
-	background-color:blue;
-	color: #FFF;
-	font-weight: bold;
-	font-size: 9pt; 
-}
-</STYLE>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>  
-<script>
-	$(document).ready(function() {
-		var show = function(event) {
-			$('div.tooltipwrapper').remove();
-			$('<div class="tooltipwrapper">This is a simple tooltip made with jQuery</div>').appendTo('span');
-			$('div.tooltipwrapper').css("display", "block");
-		};
-		
-		var hide = function(event) {
-			$('span').children().remove();
-		};
-		
-		$('span').hover(
-			show, hide
-		);
-	});
-</script>
-</head>
-<BODY>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Picture Magnifier</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery.magnifier.js">
+			/***********************************************
+			* jQuery Image Magnify- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+			* This notice MUST stay intact for legal use
+			* Visit Dynamic Drive at http://www.dynamicdrive.com/ for this script and 100s more
+			***********************************************/
+		</script>
+		<style>
+			h1 {
+				font: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+				font-size: 24px;
+			}
+			
+			.styled-select select {
+   				background: transparent;
+   				width: 268px;
+   				padding: 5px;
+				font: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+   				font-size: 16px;
+   				line-height: 1;
+   				border: 0;
+   				border-radius: 0;
+   				height: 34px;
+   				-webkit-appearance: none;
+   			}
+			
+			.styled-select {
+   				width: 240px;
+   				height: 34px;
+   				overflow: hidden;
+   				background: url(https://cloud.githubusercontent.com/assets/13230007/8584327/32e6844e-258a-11e5-9c77-d61103c613e2.png) no-repeat right #ddd;
+   				border: 1px solid #ccc;
+   			}
+		</style>
+	</head>
+	<body>
+		<h1>Click on the picture to enlarge it!</h1>
 
-<div id="wrapper">
-	<h1>Here is an example 
-		<span class="toolTip">tooltip</span>
-	</h1>
-</div>
+		<img id="imagebox" src="https://cloud.githubusercontent.com/assets/13230007/8584320/288eefe0-258a-11e5-870f-86c15c4d2941.JPG" class="magnify" data-magnifyby="3" style="width:400px" />
+		
+        <form class="styled-select">
+			<select id="imageselect">
+				<option>Which Picture?</option>
+				<option>Beach 1</option>
+				<option>Beach 2</option>
+				<option>Beach 3</option>
+			</select>
+		</form>
+        
+		<script type="text/javascript">
+			var imagebox=document.getElementById("imagebox")
+			var imageselect=document.getElementById("imageselect")
+			var imagelist=["https://cloud.githubusercontent.com/assets/13230007/8584320/288eefe0-258a-11e5-870f-86c15c4d2941.JPG", "https://cloud.githubusercontent.com/assets/13230007/8584319/288bb780-258a-11e5-8949-43660bea57ec.JPG", "https://cloud.githubusercontent.com/assets/13230007/8584321/28902bee-258a-11e5-90c8-0a1f0d042828.JPG"]
 
-</BODY>
-</HTML>
+			imageselect.onchange=function(){
+				if (this.selectedIndex!=0){
+					imagebox.src=imagelist[this.selectedIndex-1]
+					jQuery(imagebox).imageMagnify({
+						magnifyby: 3
+					})
+				}
+			}
+		</script>
+	</body>
+</html>
