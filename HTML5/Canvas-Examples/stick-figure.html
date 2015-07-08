@@ -1,0 +1,34 @@
+<!DOCTYPE html>.
+<html>
+<head>
+	<title>HTML5 Spiral</title>
+</head>
+<body>
+	<canvas id="canvasId" width="400" height="400"></canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvasId"),
+		ctx = canvas.getContext("2d");
+ 
+		// Draw shapes
+		ctx.beginPath();
+		ctx.arc(75,75,50,0,Math.PI*2,true);  // Outer circle
+		ctx.moveTo(110,75);
+		ctx.arc(75,75,35,0,Math.PI,false);   // Mouth
+		ctx.moveTo(65,65);
+		ctx.arc(60,65,5,0,Math.PI*2,true);  // Left eye
+		ctx.moveTo(95,65);
+		ctx.arc(90,65,5,0,Math.PI*2,true);  // Right eye
+		ctx.moveTo(75,125);
+		ctx.lineTo(75,275);  // Body
+		ctx.moveTo(75,175);
+		ctx.lineTo(25,150);  // Left arm
+		ctx.moveTo(75,175);
+		ctx.lineTo(125,150);  // Right arm
+		ctx.moveTo(75,275);
+		ctx.lineTo(25,325);  // Left leg
+		ctx.moveTo(75,275);
+		ctx.lineTo(125,325);  // Right leg
+		ctx.stroke();
+	</script>
+</body>
+</html>
