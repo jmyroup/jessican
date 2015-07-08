@@ -1,0 +1,70 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+	<title>Table with alternate colours and row rollover</title>
+	<style type="text/css">
+    	#classinfo{
+			border-collapse:collapse;
+			border:1px solid #000;
+		}
+		#classinfo td,#classinfo th {
+			border:1px solid #000;
+			padding:5px;
+		}
+		.colouredrow{
+			background:#ddd;
+		}
+		.hl{
+			background:#ffc;
+		}
+		div#address {
+			display:block;
+		}
+		
+    </style>
+	<script type="text/javascript">
+		function show() {
+			if(document.getElementById("address").style.display == "none") {
+				document.getElementById("address").style.display = "block";
+			} else {
+				document.getElementById("address").style.display = "none";
+			}
+		}
+	</script>
+</head>
+<body>
+<table id="classinfo" summary="Class Information">
+	<colgroup>
+		<col width="25%">
+		<col width="75%">
+	</colgroup>			   
+<tr>
+	<th id="daymonday" colspan="2">Monday</th>
+</tr>
+<tr>
+	<th id="timemonday">Time</th>
+	<th id="lessonmonday">Lesson</th>
+</tr>
+<tr>
+	<td headers="daymonday timemonday">1.00pm</td>
+	<td headers="daymonday lessonmonday">Pilates (Private
+	Lesson)</td>
+</tr>
+<tr>
+	<td headers="daymonday timemonday">2.00pm</td>
+	<td headers="daymonday lessonmonday">Nursery Playdance</td>
+</tr>
+<tr>
+	<td headers="daymonday timemonday">3.45pm</td>
+	<td headers="daymonday lessonmonday">Ballet Primary</td>
+</tr>
+</table>
+<p class="trigger"><a href="javascript:;" onclick="show();">Contact Information</a></p>
+<div id="address">
+<p>Address</p>
+<p>Address 2</p>
+<p>Address 3</p>
+</div>
+
+</body>
+</html>
