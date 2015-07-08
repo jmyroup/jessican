@@ -1,0 +1,27 @@
+
+<html>
+<h1>Tip Calculator</h1>
+<div>
+	$<input id="subtotal" type="text" size="5" /> subtotal <br />
+	<button id="tenpercent" value="0.1">10%</button>
+	<button id="fifteenpercent" value="0.15">15%</button>
+	<button id="eighteenpercent" value="0.18">18%</button>
+
+	<span id="total"></span>
+</div>
+<script>
+window.onload = function() {
+	document.getElementById("tenpercent").onclick = computeTip;
+	document.getElementById("fifteenpercent").onclick = computeTip;
+	document.getElementById("eighteenpercent").onclick = computeTip;
+}
+
+function computeTip() {
+	var subtotal = parseFloat(document.getElementById("subtotal").value);
+	var percent = this.value;
+	var tipAmount = subtotal * percent;
+	var newTotal = Math.round(tipAmount * 100) / 100;
+	document.getElementById("total").innerHTML = "Tip: $" + newTotal;
+}
+</script>
+</html>
