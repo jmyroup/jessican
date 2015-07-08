@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<title>Tic Tac Toe</title>
+<script type="text/javascript">
+
+var myWinnerFlag = 0;
+var myStepCounter = 0;
+var myCurrentSymbol = "X";
+
+function myMarkCell (myCurrentCell) {
+	var myCurrentText;
+	if(document.all) {
+		myCurrentText = myCurrentCell.innerText;
+	} else {
+		myCurrentText = myCurrentCell.textContent;
+	}
+	
+	if(myCurrentText != "X" && myCurrentText != "O" && myWinnerFlag != 1) {
+		if(document.all) {
+			myCurrentCell.innerText = myCurrentSymbol;
+		} else {
+			myCurrentCell.textContent = myCurrentSymbol;
+		}
+		myCurrentCell.style.background = "lightgrey";
+		myCurrentCell.style.cursor = "pointer";
+		
+		if(myCurrentSymbol == "X") {
+			myCurrentSymbol = "O";
+		} else {
+			myCurrentSymbol = "X";
+		}
+		
+		myStepCounter++;
+		myShowPlayer();
+		myCheckWin();
+	}
+}
+
+function myShowPlayer() {
+	if(document.all) {
+		document.getElementById("PLAYER").innerText = "Next:     " + myCurrentSymbol;
+	} else {
+		document.getElementById("PLAYER").textContent = "Next:     " + myCurrentSymbol;
+	}
+}
+
+function myCheckWin() {
+	for(i=1;i<=3;i++) {
+		if(myCheckWinHelper("R" + i + "C1") != "." && myCheckWinHelper("R" + i + "C1") == myCheckWinHelper("R" + i + "C2") && myCheckWinHelper("R" + i + "C1") == myCheckWinHelper("R" + i + "C3")) {
+			myDisplayWinner("R" + i + "C1", "R" + i + "C2", "R" + i + "C3");
+		} else if(myCheckWinHelper("R1" + "C" + i) != "." && myCheckWinHelper("R1" + "C" + i) == myCheckWinHelper("R2" + "C" + i) && myCheckWinHelper("R1" + "C" + i) == myCheckWinHelper("R3" + "C" + i)) {
+			myDisplayWinner("R1" + "C" + i, "R2" + "C" + i, "R3" + "C" + i);
+		} 
+	}
+	
+	if(myCheckWinHelper("R1C1") != "." && myCheckWinHelper("R1C1") == myCheckWinHelper("R2C2") && myCheckWinHelper("R1C1") == myCheckWinHelper("R3C3")) {
+			myDisplayWinner("R1C1", "R2C2", "R3C3");
+	} else if(myCheckWinHelper("R1C3") != "." && myCheckWinHelper("R1C3") == myCheckWinHelper("R2C2") && myCheckWinHelper("R1C3") == myCheckWinHelper("R3C1")) {
+		myDisplayWinner("R1C3", "R2C2", "R3C1");
+	}
+		
+	if(myWinnerFlag == 0 && myStepCounter == 9) {
+		if(document.all) {
+			document.getElementById("PLAYER").innerText = "";
+			document.getElementById("WINNER").innerText = "Let's call it a draw!";
+		} else {
+			document.getElementById("PLAYER").textContent = "";
+			document.getElementById("WINNER").textContent = "Let's call it a draw!";
+		}
+	}
+}
+
+function myCheckWinHelper(myCellID) {
+	if(document.all) {
+		return document.getElementById(myCellID).innerText;
+	} else {
+		return document.getElementById(myCellID).textContent;
+	}
+}
+
+function myDisplayWinner(myWinnerCell1, myWinnerCell2, myWinnerCell3) {
+	myWinnerFlag = 1;
+	
+	document.getElementById(myWinnerCell1).style.fontWeight = "bold";
+	document.getElementById(myWinnerCell2).style.fontWeight = "bold";
+	document.getElementById(myWinnerCell3).style.fontWeight = "bold";
+	document.getElementById(myWinnerCell1).style.background = "yellow";
+	document.getElementById(myWinnerCell2).style.background = "yellow";
+	document.getElementById(myWinnerCell3).style.background = "yellow";
+	
+	if(document.all) {
+		document.getElementById("PLAYER").innerText = "";
+		document.getElementById("WINNER").innerText = myCheckWinHelper(myWinnerCell1) + " is the winner!";
+	} else {
+		document.getElementById("PLAYER").textContent = "";
+		document.getElementById("WINNER").textContent = myCheckWinHelper(myWinnerCell1) + " is the winner!";
+	}
+}
+
+function myClearCells() {
+	for(i=1;i<=3;i++) {
+		for(j=1;j<=3;j++) {
+			document.getElementById("R" + i + "C" + j).style.fontWeight = "normal";
+			document.getElementById("R" + i + "C" + j).style.background = "white";
+			document.getElementById("R" + i + "C" + j).style.cursor = "hand";
+			if(document.all) {
+				document.getElementById("R" + i + "C" + j).innerText = ".";
+			} else {
+				document.getElementById("R" + i + "C" + j).textContent = ".";
+			}
+		}
+	}
+	
+	if(document.all) {
+		document.getElementById("PLAYER").innerText = "";
+		document.getElementById("WINNER").innerText = "";
+	} else {
+		document.getElementById("PLAYER").textContent = "";
+		document.getElementById("WINNER").textContent = "";
+	}
+			
+	myWinnerFlag = 0;
+	myStepCounter = 0;
+	myCurrentSymbol = "X";
+	myShowPlayer();
+}
+
+</script>
+<style>
+	td {
+		width: 30px;
+		height: 30px;
+		cursor: hand;
+		background: white;
+	}
+</style>
+</head>
+<body onLoad="myOnLoad()">
+<table border="1">
+<caption><b>Tic Tac Toe</b></caption>
+<tr align="center">
+  <td id="R1C1" onClick="myMarkCell(this)">.</td>
+  <td id="R1C2" onClick="myMarkCell(this)">.</td>
+  <td id="R1C3" onClick="myMarkCell(this)">.</td>
+</tr>
+<tr align="center">
+  <td id="R2C1" onClick="myMarkCell(this)">.</td>
+  <td id="R2C2" onClick="myMarkCell(this)">.</td>
+  <td id="R2C3" onClick="myMarkCell(this)">.</td>
+</tr>
+<tr align="center">
+  <td id="R3C1" onClick="myMarkCell(this)">.</td>
+  <td id="R3C2" onClick="myMarkCell(this)">.</td>
+  <td id="R3C3" onClick="myMarkCell(this)">.</td>
+</tr>
+</table><br/>
+<input type="button" value="Clear" onClick="myClearCells()"/>
+<span id="PLAYER"></span><br/><br/>
+<span id="WINNER" style="font-weight:bold"></span>
+</body>
+</html>
