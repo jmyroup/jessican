@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8 />
+<title>Embedded Video</title>
+<style>
+	#media-player {
+		float: left;
+		padding: 16px 16px 8px;
+		background-color: #333;
+	}
+	
+	video {
+		border: 1px solid #2e52a4;
+		width: 400px;
+		height: 266px;
+		background: #000;
+	}
+	
+	button {
+		text-indent: -9999px;
+		width: 16px;
+		height: 16px;
+		border: none;
+		cursor: pointer;
+		background: transparent url('https://cloud.githubusercontent.com/assets/13230007/8583126/faededd4-257f-11e5-9380-b036986c1f9f.png') no-repeat 0 0;
+	}
+	
+	.play {background-position: 0px 0;}
+	.pause {background-position: -19px 0;}
+	.stop {background-position: -38px 0;}
+	.volume-up {background-position: -57px 0;}
+	.volume-down {background-position: -76px 0;}
+	.mute {background-position: -95px 0;}
+	.unmute {background-position: -114px 0;}
+	.replay {background-position: -133px 0;}
+	
+	progress {
+		color: #fff;
+		font-size: 12px;
+		width: 172px;
+		height: 16px;
+		border: none;
+		margin-right: 5px;
+		background: #434343;
+	}
+	progress::-moz-progress-bar {background: #2e52a4; }
+	
+</style>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {initializePlayer();}, false);
+	
+	var player;
+	var playPauseBtn;
+	var muteBtn;
+	var progressBar;
+	
+	function initializePlayer() {
+		player = document.getElementById("movie");
+		playPauseBtn = document.getElementById("play-pause");
+		muteBtn = document.getElementById("mute");
+		progressBar = document.getElementById("progress-bar");
+		player.controls = false;
+		player.addEventListener("timeupdate", updateProgressBar, false);
+		player.addEventListener("play", function() {changeButton(playPauseBtn, "pause");}, false);
+		player.addEventListener("pause", function() {changeButton(playPauseBtn, "play");}, false);
+		player.addEventListener("volumechange", function(e) {
+			if (player.muted) changeButton(muteBtn, "unmute");
+			else changeButton(muteBtn, "mute");}, false);
+		player.addEventListener("ended", function() {this.pause();}, false);
+	}
+	
+	function changeButton(button, value) {
+		button.title = value;
+		button.innerHTML = value;
+		button.className = value;
+	}
+	
+	function togglePlayPause() {
+		if (player.paused || player.ended) {
+			changeButton(playPauseBtn, "pause");
+			player.play();
+		} else {
+			changeButton(playPauseBtn, "play");
+			player.pause();
+		}
+	}
+	
+	function stopPlayer() {
+		player.pause();
+		player.currentTime = 0;
+		changeButton(playPauseBtn, "play");
+	}
+	
+	function changeVolume(direction) {
+		if (direction === "+") player.volume += player.volume == 1 ? 0 : 0.1;
+		else player.volume -= (player.volume == 0 ? 0 : 0.1);
+		player.volume = parseFloat(player.volume).toFixed(1);
+	}
+	
+	function toggleMute() {
+		if (player.muted) {
+			changeButton(muteBtn, "mute");
+			player.muted = false;
+		} else {
+			changeButton(muteBtn, "unmute");
+			player.muted = true;
+		}
+	}
+	
+	function replayMovie() {
+		resetPlayer();
+		player.play();
+		changeButton(playPauseBtn, "pause");
+	}
+	
+	function updateProgressBar() {
+		var percentage = Math.floor((100 / player.duration) * player.currentTime);
+		progressBar.value = percentage;
+		progressBar.innerHTML = percentage + "% played";
+	}
+	
+	function canPlay(ext) {
+		var ableToPlay = player.canPlay("video/" + ext);
+		if (ableToPlay == "") return false;
+		else return true;
+	}
+	
+	function resetPlayer() {
+		progressBar.value = 0;
+		player.currentTime = 0;
+		changeButton(playPauseBtn, "play");
+	}
+</script>
+</head>
+<body>
+	<div id="media-player">
+		<video id="movie" preload controls>
+  			<source src="sample.ogv"  type="video/ogg; />
+   			<source src="sample.mp4"  type="video/mp4; />
+    		<object width="400" height="266" type="application/x-shockwave-flash" data="sample.flv">
+    			<param value="sample.flv" name="movie" />
+    		</object>
+		</video>
+		<div id="controls">
+        	<progress id="progress-bar" min="0" max="100" value="0">0% played</progress>
+    		<button id="replay" class="replay" title="replay" onclick="replayMovie();">replay</button>
+    		<button id="play-pause" class="play" title="play" onClick="togglePlayPause();">play</button>
+        	<button id="stop" class="stop" title="stop" onclick="stopPlayer();">stop</button>
+        	<button id="volume-up" class="volume-up" title="volume up" onClick="changeVolume('+');">up</button>
+        	<button id="volume-down" class="volume-down" title="volume down" onClick="changeVolume('-');">down</button>
+        	<button id="mute" class="mute" title="mute" onclick="toggleMute();">mute</button>
+    	</div>
+	</div>
+</body>
+</html>
