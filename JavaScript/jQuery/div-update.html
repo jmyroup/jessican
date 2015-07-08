@@ -1,0 +1,17 @@
+<HTML>
+<STYLE>
+#main{ border=1; background:#CCC;width:250;height:250; position:relative;}
+#innerBox{border=1;width:75;height:75;position:absolute; top:20; left:20;}
+</STYLE>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#innerBox").hide().css({"background-color": "green"}).fadeIn();
+	});
+</script>  
+
+<DIV id="main">
+	<DIV id="innerBox"></DIV>
+</DIV>
+
+</HTML>
