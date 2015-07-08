@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+	<title>Table with alternate colours</title>
+	<style type="text/css">
+    	#classinfo{
+			border-collapse:collapse;
+			border:1px solid #000;
+		}
+		#classinfo td,#classinfo th {
+			border:1px solid #000;
+			padding:5px;
+		}
+		.colouredrow{
+			background:#ddd;
+		}
+		.altcolouredrow{
+			background:#999;
+		}
+		.hl{
+			background:#ffc;
+		}
+		
+    </style>
+</head>
+<body>
+<table id="classinfo" summary="Class Information">
+	<colgroup>
+		<col width="25%">
+		<col width="75%">
+	</colgroup>			   
+<tr class="altcolouredrow">
+	<th id="daymonday" colspan="2">Monday</th>
+</tr>
+<tr class="colouredrow">
+	<th id="timemonday">Time</th>
+	<th id="lessonmonday">Lesson</th>
+</tr>
+<tr class="altcolouredrow">
+	<td headers="daymonday timemonday">1.00pm</td>
+	<td headers="daymonday lessonmonday">Pilates (Private
+	Lesson)</td>
+</tr>
+<tr class="colouredrow">
+	<td headers="daymonday timemonday">2.00pm</td>
+	<td headers="daymonday lessonmonday">Nursery Playdance</td>
+</tr>
+<tr class="altcolouredrow">
+	<td headers="daymonday timemonday">3.45pm</td>
+	<td headers="daymonday lessonmonday">Ballet Primary</td>
+</tr>
+</table>
+
+</body>
+</html>
