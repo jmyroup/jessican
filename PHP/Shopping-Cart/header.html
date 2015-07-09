@@ -1,0 +1,25 @@
+<?php
+session_start();
+error_reporting(E_ALL);
+
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo (isset($page_title)) ? $page_title : 'Welcome!'; ?></title>
+</head>
+
+<body>
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="600">
+	<tr>
+    	<td align="center" colspan="3"><img src="https://cloud.githubusercontent.com/assets/13230007/8606168/d104bb14-263e-11e5-91c8-e75994ff257e.jpg" width="600" height="61" border="0" alt="header" /></td>
+    </tr>
+    <tr>
+    	<td><a href="index.php"><img src="https://cloud.githubusercontent.com/assets/13230007/8606170/d10ccc96-263e-11e5-84dd-c0608347030b.jpg" width="200" height="39" border="0" alt="home page" /></a></td>
+        <td><a href="products.php"><img src="https://cloud.githubusercontent.com/assets/13230007/8606169/d10cb7f6-263e-11e5-9ab0-fa616f260ea3.jpg" width="200" height="39" border="0" alt="products" /></a></td>
+        <td><a href="view_cart.php"><img src="https://cloud.githubusercontent.com/assets/13230007/8606167/d0f5ac14-263e-11e5-8412-00908c3e72e6.jpg" width="200" height="39" border="0" alt="view cart" /></a></td>
+    </tr>
+    <tr>
+    	<td align="left" colspan="3" bgcolor="#FFFFCC"><br />
