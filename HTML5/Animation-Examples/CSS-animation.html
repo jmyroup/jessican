@@ -1,24 +1,27 @@
 <html>
 <head>
-<title>Canvas Animation in CSS</title>
-<style type="text/css">
-#image {
-    position: relative;
-    -webkit-animation: moveDown 2s normal ease-out;
-    animation: moveDown 2s normal ease-out;
-}
-@-webkit-keyframes moveDown {
-    0% {top: 0px;}
-    100% {top: 500px;}
-}
-@keyframes moveDown {
-    0% {top: 0px;}
-    100% {top: 500px;}
-}
-</style>
+    <title>Canvas Animation in CSS</title>
+    <style type="text/css">
+        #image {
+            position: relative;
+            -webkit-animation: moveDown 2s normal ease-out;
+            animation: moveDown 2s normal ease-out;
+        }
+        
+        @-webkit-keyframes moveDown {
+            0% {top: 0px;}
+            100% {top: 500px;}
+        }
+        
+        @keyframes moveDown {
+            0% {top: 0px;}
+            100% {top: 500px;}
+        }
+    </style>
 </head>
-<div id="image">
-<img src="http://unex.uci.edu/images/homepage/2011_winter.png" />
-</div>
+<body>
+    <div id="image">
+        <img src="http://unex.uci.edu/images/homepage/2011_winter.png" />
+    </div>
 </body>
 </html>
