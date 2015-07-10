@@ -1,49 +1,52 @@
 <html>
 <head>
-<title>Fly</title>
-<script type="text/javascript">
-var Timer;
-function Fly()
-{
- document.getElementById("divBlock").style.left = "20px";
- document.getElementById("divBlock").style.top = "300px";
- Timer = setInterval("MoveUp()", 10);
-}
-function MoveUp()
-{
-var objElem = document.getElementById("divBlock");
-var curTop = parseInt(objElem.style.top);
-objElem.style.top = (curTop - 3) + "px";
- if ( parseInt(objElem.style.top) == 0) {
- clearInterval(Timer);
- Timer = setInterval("MoveRight()",10);
- }
-}
-function MoveRight()
-{
-var objElem = document.getElementById("divBlock");
-var curLeft = parseInt(objElem.style.left);
-objElem.style.left = (curLeft + 3) + "px";
- if ( parseInt(objElem.style.left) > 600) {
- clearInterval(Timer);
- }
-}
-</script>
-<style type="text/css">
-#divBlock {
-position:relative;
-height:70px;
-width:275px;
-top:300px;
-left:20px;
-}
-</style>
+	<title>Fly</title>
+	<script type="text/javascript">
+		var Timer;
+		
+		function Fly() {
+			document.getElementById("divBlock").style.left = "20px";
+			document.getElementById("divBlock").style.top = "300px";
+			Timer = setInterval("MoveUp()", 10);
+		}
+		
+		function MoveUp() {
+			var objElem = document.getElementById("divBlock");
+			var curTop = parseInt(objElem.style.top);
+			objElem.style.top = (curTop - 3) + "px";
+			
+			if ( parseInt(objElem.style.top) == 0) {
+				clearInterval(Timer);
+				Timer = setInterval("MoveRight()",10);
+			}
+		}
+
+		function MoveRight() {
+			var objElem = document.getElementById("divBlock");
+			var curLeft = parseInt(objElem.style.left);
+			objElem.style.left = (curLeft + 3) + "px";
+ 
+			if ( parseInt(objElem.style.left) > 600) {
+				clearInterval(Timer);
+			}
+		}
+	</script>
+	<style type="text/css">
+		#divBlock {
+			position:relative;
+			height:70px;
+			width:275px;
+			top:300px;
+			left:20px;
+		}
+	</style>
 </head>
 <body onLoad="init();">
-<form>
-<input type="button" value="Fly!" onClick="Fly();">
-</form>
-<div id="divBlock">
-<img src="https://cloud.githubusercontent.com/assets/13230007/8583012/47b099f6-257f-11e5-908e-1c921f270d8a.gif" style="postion:absolute" /></div>
+	<form>
+		<input type="button" value="Fly!" onClick="Fly();">
+	</form>
+	<div id="divBlock">
+		<img src="https://cloud.githubusercontent.com/assets/13230007/8583012/47b099f6-257f-11e5-908e-1c921f270d8a.gif" style="postion:absolute" />
+	</div>
 </body>
 </html>
