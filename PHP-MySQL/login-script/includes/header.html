@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><?php echo $page_title; ?></title>
+</head>
+<body>
+	<div id="navigation">
+		<a href="register.php">Register</a> | 
+		<a href="loggedin.php">Members Only</a> | 
+		<?php 
+			if(isset($_SESSION['user_id'])) {
+			  echo '<a href="logout.php">Logout</a>';
+			} 
+			else {
+			  echo '<a href="login.php">Login</a>';
+			} 
+		?>
+		<br><br><hr>
+	</div>
+	<div id="content">
