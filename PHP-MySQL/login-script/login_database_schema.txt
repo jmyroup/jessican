@@ -1,0 +1,8 @@
+CREATE TABLE members (
+user_id int(4) NOT NULL auto_increment,
+first_name varchar(65) NOT NULL default '',
+last_name varchar(65) NOT NULL default '',
+password varchar(65) NOT NULL default '',
+email varchar(65) NOT NULL default '',
+PRIMARY KEY (user_id)
+) 
