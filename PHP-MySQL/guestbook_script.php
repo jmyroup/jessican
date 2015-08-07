@@ -50,18 +50,18 @@ while($get_row = mysqli_fetch_array($get_rs)) {
 	if(!empty($name)) {
 		// If name exists and email exists, link name to email
 		if(!empty($email)) {
-			$name="by <a href=\"mailto:$email\">$name</a>";
+			$name="<a href=\"mailto:$email\">$name</a>";
 		}
 	// If name does not exist and email exists, link email to email		
 	} elseif (!empty($email)) {
-		$name = "by <a href=\"mailto:$email\">$email</a>";
+		$name = "<a href=\"mailto:$email\">$email</a>";
 	// Else make name Anonymous 
 	} else {
 		$name = "by Anonymous";
 	}
 	
 	// Append to string we'll print later on
-	$gb_str .= "<br>$comment<p class=\"small\">< posted on $date $name><hr size=\"1\">";
+	$gb_str .= "<br>$comment<p class=\"small\">< posted on $date by $name><hr size=\"1\">";
 }
 
 // Hitcounter
