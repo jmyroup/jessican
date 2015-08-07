@@ -6,7 +6,6 @@ $dbDatabase = "guestbook";
 
 // Connect to DB
 $li = mysqli_connect($dbHost, $dbUser, $dbPass, $dbDatabase) or die("Could not connect");
-//mysql_select_db($dbDatabase, $li) or die("could not select DB");
 
 // initiate some vars
 $gb_str = ""; 	// $gb_str is the string we'll append entries to
@@ -53,19 +52,27 @@ while($get_row = mysqli_fetch_array($get_rs)) {
 		if(!empty($email)) {
 			$name="by <a href=\"mailto:$email\">$name</a>";
 		}
-	// If name does exist and email exists, link email to email		
+	// If name does not exist and email exists, link email to email		
 	} elseif (!empty($email)) {
 		$name = "by <a href=\"mailto:$email\">$email</a>";
-	// Else make name blank 
+	// Else make name Anonymous 
 	} else {
-		$name = "";
+		$name = "by Anonymous";
 	}
 	
 	// Append to string we'll print later on
 	$gb_str .= "<br>$comment<p class=\"small\">< posted on $date $name><hr size=\"1\">";
 }
+
+// Hitcounter
+$query = mysqli_query($li, "UPDATE hitcounter SET hits = hits + 1");
+$query = mysqli_query($li, "SELECT hits FROM hitcounter");
+$rows = mysqli_fetch_array($query);
+$hits = $rows['hits'];
+ 
 // Free Result Memory
 mysqli_free_result($get_rs);
+mysqli_free_result($query);
 ?>
 
 <!doctype html>
