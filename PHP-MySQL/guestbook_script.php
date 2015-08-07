@@ -68,11 +68,11 @@ while($get_row = mysqli_fetch_array($get_rs)) {
 mysqli_free_result($get_rs);
 ?>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-	<TITLE>Guestbook</TITLE>
-	<SCRIPT language="javascript"><!--
+<!doctype html>
+<html>
+<head>
+	<title>Guestbook</title>
+	<script language="javascript">
 	/* This function is pulled from a generic validation file from
 	some other site (probably developer.netscape.com) and strips out
 	characters you don't want */
@@ -103,9 +103,9 @@ mysqli_free_result($get_rs);
 			return true;
 		}
 	}
-	--></SCRIPT>
-</HEAD>
-<BODY bgcolor="#FFFFFF"><?php echo $gb_str; ?><form name="gb" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">		
+	</script>
+</head>
+<body bgcolor="#FFFFFF"><?php echo $gb_str; ?><form name="gb" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">		
 	<table cellpadding="3" cellspacing="0" border="0">
     	<tr>
         	<td class="tdhead" valign="top" align="right">Name</td>
@@ -124,8 +124,10 @@ mysqli_free_result($get_rs);
             <td><input type="submit" name="submit" value="submit" onClick="return valForm(document.gb)"><input type="reset" name="reset" value="reset"></td>
         </tr>
     </table></form>
-</BODY>
-</HTML>
+	<br />
+	Visitors: <?php echo $hits; ?>
+</body>
+</html>
 
 <?php
 // Close MySQL Connection
