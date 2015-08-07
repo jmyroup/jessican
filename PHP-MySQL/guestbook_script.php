@@ -5,12 +5,10 @@ $dbPass = "password";
 $dbDatabase = "guestbook";
 
 // Connect to DB
-
-$li = mysql_connect($dbHost, $dbUser, $dbPass) or die("Could not connect");
-mysql_select_db($dbDatabase, $li) or die("could not select DB");
+$li = mysqli_connect($dbHost, $dbUser, $dbPass, $dbDatabase) or die("Could not connect");
+//mysql_select_db($dbDatabase, $li) or die("could not select DB");
 
 // initiate some vars
-
 $gb_str = ""; 	// $gb_str is the string we'll append entries to
 $pgeTitle = "View and Sign Guestbook";
 
@@ -23,8 +21,8 @@ if (!empty($_POST["submit"])) {
 	
 	$gb_query = "insert into guestbook (gbName, gbEmail, gbComment, gbDateAdded) values ('$name', '$email', '$comment', '$date')";
 	
-	mysql_query($gb_query);
-	$res = mysql_affected_rows();
+	mysqli_query($li, $gb_query);
+	$res = mysqli_affected_rows($li);
 	
 	// See if insert was successful or not
 	if($res > 0) {
@@ -35,18 +33,16 @@ if (!empty($_POST["submit"])) {
 	
 	// Append success/failure message
 	$gb_str .= "<span class=\"ret\">$ret_str</span><BR>";
-	echo mysql_error();
+	echo mysqli_error($li);
 }
-
 // The querystring
 $get_query = "select gbName, gbEmail, gbComment, DATE_FORMAT(gbDateAdded, '%m-%d-%y %H:%i') gbDateAdded
 		from guestbook";
-
-$get_rs = mysql_query($get_query);
+$get_rs = mysqli_query($li, $get_query);
 $gb_str .= "<hr size=\"1\">";
 
 // While there are still results
-while($get_row = mysql_fetch_array($get_rs)) {
+while($get_row = mysqli_fetch_array($get_rs)) {
 	$name = $get_row["gbName"];
 	$email = $get_row["gbEmail"];
 	$comment = $get_row["gbComment"];
@@ -68,9 +64,8 @@ while($get_row = mysql_fetch_array($get_rs)) {
 	// Append to string we'll print later on
 	$gb_str .= "<br>$comment<p class=\"small\">< posted on $date $name><hr size=\"1\">";
 }
-
 // Free Result Memory
-mysql_free_result($get_rs);
+mysqli_free_result($get_rs);
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -78,18 +73,14 @@ mysql_free_result($get_rs);
 <HEAD>
 	<TITLE>Guestbook</TITLE>
 	<SCRIPT language="javascript"><!--
-
 	/* This function is pulled from a generic validation file from
 	some other site (probably developer.netscape.com) and strips out
 	characters you don't want */
-
 	function stripCharsInBag (s, bag) {
 		var i;
     	var returnString = "";
-
     	// Search through string's characters one by one.
     	// If character is not in bag, append to returnString.
-
     	for (i = 0; i < s.length; i++)
     	{   
         	// Check that current character isn't whitespace.
@@ -98,9 +89,7 @@ mysql_free_result($get_rs);
     	}
     	return returnString;
 	}
-
 	// This function just makes sure the comment field is not empty
-
 	function valForm(frm) {
 		badChars = "<[]>{}";
 		if(frm.gbComment.value == "") {
@@ -114,7 +103,6 @@ mysql_free_result($get_rs);
 			return true;
 		}
 	}
-
 	--></SCRIPT>
 </HEAD>
 <BODY bgcolor="#FFFFFF"><?php echo $gb_str; ?><form name="gb" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">		
@@ -141,5 +129,5 @@ mysql_free_result($get_rs);
 
 <?php
 // Close MySQL Connection
-mysql_close($li);
-?> 
+mysqli_close($li);
+?>
