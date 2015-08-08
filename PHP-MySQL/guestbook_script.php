@@ -13,9 +13,9 @@ $pgeTitle = "View and Sign Guestbook";
 
 // If form is submitted, validate the data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$_POST["gbName"] = htmlentities($_POST["gbName"]);
-	$_POST["gbEmail"] = htmlentities($_POST["gbEmail"]);
-	$_POST["gbComment"] = htmlentities($_POST["gbComment"]);
+	$_POST["gbName"] = htmlentities(strip_tags($_POST["gbName"]));
+	$_POST["gbEmail"] = htmlentities(strip_tags($_POST["gbEmail"]));
+	$_POST["gbComment"] = htmlentities(strip_tags($_POST["gbComment"]));
 	
 	// spam purification
 	function spam_scrubber($value) {
@@ -79,9 +79,9 @@ $gb_str .= "<hr size=\"1\" />";
 
 // While there are still results
 while($get_row = mysqli_fetch_array($get_rs)) {
-	$name = $get_row["gbName"];
-	$email = $get_row["gbEmail"];
-	$comment = $get_row["gbComment"];
+	$name = strip_tags($get_row["gbName"]);
+	$email = strip_tags($get_row["gbEmail"]);
+	$comment = strip_tags($get_row["gbComment"]);
 	$date = $get_row["gbDateAdded"];
 	
 	if(!empty($name)) {
